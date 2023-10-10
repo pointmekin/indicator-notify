@@ -12,12 +12,10 @@ def index():
 @app.route('/get-signals', methods=['GET'])
 def get_signals():
   args = request.args
-  print(args)
   symbol = args['symbol']
   interval = args['interval']
   start = None
   end = None
-  period = None
   if (
     symbol is None
     or interval is None

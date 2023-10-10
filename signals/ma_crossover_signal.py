@@ -49,13 +49,13 @@ def ma_crossover_signal(
     macd_signal = [0]*len(df)
     for row in range(1, len(df)):
         if(
-            df.MACD_SIGNAL[row] > df.MACD[row]
-            and df.MACD_SIGNAL[row-1] < df.MACD[row-1]
+            df.MACD_SIGNAL[row] < df.MACD[row]
+            and df.MACD_SIGNAL[row-1] > df.MACD[row-1]
         ):
             macd_signal[row] = 1
         elif (
-            df.MACD_SIGNAL[row] < df.MACD[row]
-            and df.MACD_SIGNAL[row-1] > df.MACD[row-1]
+            df.MACD_SIGNAL[row] > df.MACD[row]
+            and df.MACD_SIGNAL[row-1] < df.MACD[row-1]
         ):
             macd_signal[row] = -1
 
@@ -73,11 +73,7 @@ def ma_crossover_signal(
         "Content-Type": "application/json",
         "Authorization": "Bearer " + os.environ.get("SECRET")
     }
-    print("Bearer " + os.environ.get("SECRET"))
     
-    # current price
-    
-
     # cross up
 
     if df.iloc[-1].TotalSignal == 2:
